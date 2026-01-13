@@ -42,6 +42,19 @@ const getAll = async (req, res) => {
         res.status(500).json({error: "error interno"});
     }
 };
+
+const getBySubject = async (req, res) => {
+  const userId = req.user.id;
+  const { subjectId } = req.params;
+
+  try {
+    const notes = await Note.find({ userId, subjectId });
+    res.json(notes);
+  } catch {
+    res.status(500).json({ error: "error interno" });
+  }
+};
+
 const deleteNote = async (req, res) => {
   const noteId = req.params.id;
   const userId = req.user.id;
@@ -86,4 +99,4 @@ const updateNote = async (req, res) => {
 
 
 
-module.exports = {create, getAll, deleteNote, updateNote};
+module.exports = {create, getAll, deleteNote, updateNote, getBySubject};

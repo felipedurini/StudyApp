@@ -4,7 +4,7 @@ import { API_BASE } from "./client";
 const baseUrl = `${API_BASE}/api/notes`;
 
 export const getNotes = async ({ token, subjectId }) => {
-  const res = await axios.get(`${baseUrl}?subjectId=${subjectId}`, {
+  const res = await axios.get(`${baseUrl}/subject/${subjectId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return res.data;
